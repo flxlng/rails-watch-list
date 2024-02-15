@@ -1,17 +1,19 @@
 <h1><%= @list.name %></h1>
-
+<div class="movies">
 <% @list.bookmarks.each do |bookmark| %>
-  <div class="card-product">
+  <div class="card-trip">
     <%= image_tag(bookmark.movie.poster_url) %>
-    <div class="card-product-infos">
-      <%= bookmark.movie.title %> <strong><%= bookmark.movie.rating %></strong>
-      <br>
-      <%= bookmark.comment %>
-      <%= link_to "❌", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Remove #{bookmark.movie.title}?" } %>
+    <div class="card-trip-infos">
+      <div>
+        <h2><%= bookmark.movie.title %> <strong><%= bookmark.movie.rating %></strong></h2>
+        <p><%= bookmark.comment %></p>
+      </div>
+      <h2 class="delete-button"> <%= link_to "🗑️", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Remove #{bookmark.movie.title}?" } %>
+</h2>
     </div>
   </div>
 <% end %>
-
+</div>
 <br>
   <%= link_to "Add Bookmarks", new_list_bookmark_path(params[:id]) %>
 <br>
